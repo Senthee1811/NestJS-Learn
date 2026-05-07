@@ -37,14 +37,13 @@ export class ProfilesController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return {
-      id,
-      ...updateProfileDto,
-    };
+    return this.profileService.updateProfile(id, updateProfileDto);
   }
 
   //DELETE /profiles/:id
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: string) {}
+  remove(@Param('id') id: string) {
+    this.profileService.deleteProfile(id);
+  }
 }
